@@ -1,0 +1,10 @@
+spring: 
+  profile: dev
+server: 
+  port: 8081
+com: 
+  pppcar: 
+    user: 
+      name: dev-user
+      id: 1
+      age: 1

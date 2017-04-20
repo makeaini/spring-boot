@@ -1,0 +1,65 @@
+server:
+  port: 8888
+#endpoints:
+  #shutdown:
+     #enabled: true
+
+#application:
+ # hello: Hello Angel From application dfdfdaa
+management: 
+  security: 
+   enabled: false
+# database name
+
+spring:
+  freemarker:
+      allow-request-override: false
+      cache: true
+      check-template-location: true
+      charset: UTF-8
+      content-type: text/html
+      expose-request-attributes: false
+      expose-session-attributes: false
+      expose-spring-macro-helpers: false
+  mail: 
+      host: smtp.exmail.qq.com
+      username: info@pppcar.com
+      password: Info123456Info
+      properties:
+        mail:
+            smtp:
+            # 设置是否需要认证，如果为true,那么用户名和密码就必须的，
+                auth: true
+                # 是对纯文本通信协议的扩展。它提供一种方式将纯文本连接升级为加密连接（TLS或SSL），而不是另外使用一个端口作加密通信。
+                starttls: 
+                    enable: true
+                    required: true
+  datasource: 
+      url : jdbc:mysql://localhost:3306/springboot_db
+      username : root
+      password : 123
+      driverClassName : com.mysql.jdbc.Driver
+      max-active: 20
+      max-idle: 8
+      min-idle: 8
+      initial-size: 10
+  redis:
+     database: 0
+     host: 127.0.0.1  
+     password: 
+     port: 6379
+     pool: 
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: -1
+  jpa:
+     database: MYSQL
+     show-sql: true
+     hibernate:
+        ddl-auto: update
+        naming-strategy:  org.hibernate.cfg.ImprovedNamingStrategy
+     properties: 
+          hibernate:
+              dialect:  org.hibernate.dialect.MySQL5Dialect
+  

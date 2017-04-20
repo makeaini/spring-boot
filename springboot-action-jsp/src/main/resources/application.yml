@@ -1,0 +1,24 @@
+server:
+  port: 8888
+#endpoints:
+  #shutdown:
+     #enabled: true
+#spring:
+ #  datasource:
+  #   driverClassName: com.mysql.jdbc.Driver
+   #  url: jdbc:mysql://localhost:3306/springboot_db
+    # username: root
+     #password: 123
+     #maxActive: 10
+#application:
+ # hello: Hello Angel From application dfdfdaa
+  
+spring: 
+  mvc: 
+    view: 
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+management: 
+  security: 
+   enabled: false
+  
