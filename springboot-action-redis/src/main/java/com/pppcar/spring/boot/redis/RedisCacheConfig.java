@@ -11,9 +11,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 @EnableCaching // 启用缓存，这个注解很重要；
@@ -55,20 +59,20 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
 		// 或者JdkSerializationRedisSerializer序列化方式;
 		RedisSerializer<String> redisSerializer = new StringRedisSerializer();// Long类型不可以会出现异常信息;
 		redisTemplate.setKeySerializer(redisSerializer);
-		redisTemplate.setHashKeySerializer(redisSerializer);
-		redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
+	/*	Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(com.fasterxml.jackson.annotation.PropertyAccessor.ALL, Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+		redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);*/
 		return redisTemplate;
 	}
 
 	@Override
 	public KeyGenerator keyGenerator() {
-		System.out.println("RedisCacheConfig.keyGenerator()");
 		return new KeyGenerator() {
 			@Override
 			public Object generate(Object o, Method method, Object... objects) {
-				// This will generate a unique key of the class name, the method
-				// name
-				// and all method parameters appended.
 				StringBuilder sb = new StringBuilder();
 				sb.append(o.getClass().getName());
 				sb.append(method.getName());

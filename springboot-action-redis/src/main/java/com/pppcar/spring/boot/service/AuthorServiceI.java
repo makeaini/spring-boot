@@ -10,7 +10,7 @@ public interface AuthorServiceI {
 
 	Author findAuthor(Long id);
 	
-	Author findOne(String key);
+	Author findOne(Long key);
 	
 	void delete(Long id);
 

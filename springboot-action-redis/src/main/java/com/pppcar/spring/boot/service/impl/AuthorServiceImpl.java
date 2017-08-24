@@ -33,11 +33,11 @@ public class AuthorServiceImpl implements AuthorServiceI {
 	}
 
 	@Override
-	public Author findOne(String key) {
+	public Author findOne(Long key) {
 		ValueOperations<String, Object> valueOperations = redisTemplate.opsForValue();
 		Author author = new Author(100L, "realName", "nickName");
-		valueOperations.set(key, author);
-		return (Author) valueOperations.get("key");
+		valueOperations.set(key.toString(), author);
+		return (Author) valueOperations.get(key.toString());
 	}
 
 	@CacheEvict(value = "demoInfo",key="#id + 'findById'")

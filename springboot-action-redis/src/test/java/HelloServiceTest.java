@@ -6,6 +6,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.pppcar.spring.boot.Application;
+import com.pppcar.spring.boot.pojo.Author;
 import com.pppcar.spring.boot.service.AuthorServiceI;
 
 //// SpringJUnit支持，由此引入Spring-Test框架支持！
@@ -21,6 +22,7 @@ public class HelloServiceTest {
    
     @Test
     public void testGetName(){
-    	authorServiceI.findOne("aaaa");
+    	Author author = 	authorServiceI.findOne(1L);
+    	System.out.println(author);
     }
 }
